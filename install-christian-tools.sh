@@ -58,6 +58,7 @@ echo ""
 echo "Installing kjv (KJV Bible)..."
 if ! command -v kjv &>/dev/null; then
     cd /tmp
+    rm -rf kjv 2>/dev/null || true
     git clone https://github.com/LukeSmithxyz/kjv.git
     cd kjv
     sudo make install
@@ -70,6 +71,7 @@ fi
 echo "Installing layeh/kjv (C version)..."
 if ! command -v kjv-layeh &>/dev/null; then
     cd /tmp
+    rm -rf layeh-kjv 2>/dev/null || true
     git clone https://github.com/layeh/kjv.git layeh-kjv 2>/dev/null || true
     cd layeh-kjv 2>/dev/null && {
         # Try to build, but don't fail if C23 bool conflict occurs
@@ -86,6 +88,7 @@ fi
 echo "Installing bib (NET Bible)..."
 if ! command -v bib &>/dev/null; then
     cd /tmp
+    rm -rf bib 2>/dev/null || true
     git clone https://github.com/prestonharberts/bib.git
     cd bib
     sudo cp bib /usr/local/bin/
@@ -99,6 +102,7 @@ fi
 echo "Installing daily-verse..."
 if ! command -v daily-verse &>/dev/null; then
     cd /tmp
+    rm -rf daily-verse 2>/dev/null || true
     git clone https://github.com/patlehmann1/daily-verse.git
     cd daily-verse
     go build -o daily-verse .
@@ -135,6 +139,7 @@ fi
 echo "Installing c-bible..."
 if ! command -v c-bible &>/dev/null; then
     cd /tmp
+    rm -rf c-bible 2>/dev/null || true
     git clone https://github.com/tysteiman/c-bible.git
     cd c-bible
     make
@@ -148,6 +153,7 @@ fi
 echo "Installing bible_verse-cli..."
 if ! command -v bible_verse &>/dev/null; then
     cd /tmp
+    rm -rf bible_verse-cli 2>/dev/null || true
     git clone https://github.com/RaynardGerraldo/bible_verse-cli.git
     cd bible_verse-cli
     sudo cp bible_verse-cli.sh /usr/local/bin/bible_verse
