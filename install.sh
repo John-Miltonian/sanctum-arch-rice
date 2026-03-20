@@ -1,6 +1,6 @@
 #!/bin/bash
 # Sanctum OS - One-Line Installer
-# curl -fsSL https://raw.githubusercontent.com/John-Miltonian/sanctum-arch-rice/main/install.sh | bash
+# curl -fsSL https://raw.githubusercontent.com/John-Miltonian/sanctum-arch-rice/master/install.sh | bash
 
 set -e
 
@@ -46,7 +46,6 @@ echo "✓ Installation complete!"
 echo ""
 echo "Next steps:"
 echo "  1. Add wallpaper: ~/.config/wallpapers/sanctum-dark.jpg"
-echo "  2. Install Christian tools: ./install-christian-tools.sh"
-echo "  3. Start Niri: niri"
+echo "  2. Start Niri: niri"
 echo ""
 echo "Repository: $REPO_URL"

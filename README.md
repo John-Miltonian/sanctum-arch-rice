@@ -1,93 +1,191 @@
 # Sanctum OS - Dark Christian Arch Rice
 
-A dark mode, transparent window Arch Linux rice with Christian theming.
+A dark mode, transparent window Arch Linux rice with Christian liturgical theming.
+
+![Sanctum OS](screenshots/preview.png)
 
 ## Overview
 
 This rice features:
 - **WM**: Niri (scrollable tiling window manager)
-- **Bar**: Waybar with Christian icon styling
-- **Terminal**: Kitty with transparency and cross prompt
-- **Theme**: Dark mode with gold/amber accents (liturgical colors)
+- **Bar**: Waybar with liturgical workspace names and gold accents
+- **Terminal**: Kitty with transparency (92% opacity) and cross prompt
+- **Theme**: Dark mode with gold/amber accents following liturgical colors
 - **Wallpaper**: Dark religious artwork (Tenebrism/Caravaggio style)
 - **Transparency**: All windows support transparency effects
 
-## Christian Tools Included
+## Screenshots
 
-### Terminal Bible Tools
-
-1. **kjv** - Command-line King James Bible reader
-   ```bash
-   kjv John 3:16
-   kjv Psalm 23
-   ```
-
-2. **bible-cli** - TUI Bible reader with multiple themes
-   ```bash
-   bible-cli
-   ```
-
-3. **daily-verse** - Daily Bible verse in terminal
-   ```bash
-   daily-verse
-   ```
-
-4. **grepbible** - Search across 60+ languages
-   ```bash
-   grepbible "John 3:16" -l en -l la
-   ```
-
-### GUI Bible Study
-
-5. **BibleTime** - Qt-based Bible study (install via pacman)
-6. **Xiphos** - GTK Bible study tool
-7. **Ezra Bible App** - Modern Bible study with tags/keywords
-
-### Prayer Tools
-
-8. **prayer-time-cli** - Islamic-style prayer times (adapted for Christian hours)
+*Add your own screenshots to the `screenshots/` folder*
 
 ## Installation
 
+### One-Line Install
+
 ```bash
-# Install Niri
-sudo pacman -S niri
-
-# Install dependencies
-sudo pacman -S waybar kitty rofi wofi swaybg swaylock-effects
-
-# Install Christian tools (from AUR or build from source)
-yay -S kjv-git bible-cli daily-verse grepbible
-sudo pacman -S bibletime xiphos
-
-# Copy configs
-cp -r config/* ~/.config/
-cp -r local/bin/* ~/.local/bin/
-
-# Set up cross prompt
-echo 'source ~/.config/zsh/cross-prompt.zsh' >> ~/.zshrc
+curl -fsSL https://raw.githubusercontent.com/John-Miltonian/sanctum-arch-rice/master/install.sh | bash
 ```
+
+### Manual Install
+
+```bash
+# 1. Install dependencies
+sudo pacman -S niri waybar kitty wofi swaybg mako wl-clipboard
+
+# Install AUR packages
+yay -S swaylock-effects wlogout
+
+# 2. Clone the rice
+git clone https://github.com/John-Miltonian/sanctum-arch-rice.git
+
+# 3. Run setup
+cd sanctum-arch-rice
+./setup.sh
+```
+
+## Dependencies
+
+### Required
+- `niri` - Window manager
+- `waybar` - Status bar
+- `kitty` - Terminal emulator
+- `wofi` - Application launcher
+- `swaybg` - Wallpaper daemon
+- `mako` - Notification daemon
+
+### Optional (AUR)
+- `swaylock-effects` - Lock screen with blur effects
+- `wlogout` - Logout menu
 
 ## Keybindings (Niri)
 
 | Key | Action |
 |-----|--------|
-| `Super+Enter` | Open terminal |
-| `Super+Q` | Close window |
-| `Super+Space` | Open launcher |
-| `Super+1-0` | Switch to workspace |
-| `Super+Shift+1-0` | Move window to workspace |
-| `Super+Tab` | Toggle overview |
-| `Super+F` | Fullscreen |
-| `Super+Shift+E` | Exit Niri |
+| Super+Enter | Open terminal |
+| Super+Q | Close window |
+| Super+Space | Open launcher (wofi) |
+| Super+1-9 | Switch to workspace |
+| Super+Shift+1-9 | Move window to workspace |
+| Super+Tab | Toggle overview |
+| Super+F | Fullscreen |
+| Super+Shift+E | Exit Niri |
+
+## Workspaces
+
+Workspaces follow liturgical naming:
+- 1: Sanctum
+- 2: Scripture
+- 3: Prayer
+- 4: Work
+- 5: Study
+- 6: Rest
+- 7: Media
+- 8: System
+- 9: Communion
 
 ## Theming
 
 Colors follow the liturgical calendar:
-- **Gold**: Major feasts (default accent)
-- **Purple**: Advent/Lent
-- **Red**: Pentecost/martyrs
-- **Green**: Ordinary time
-- **White**: Easter/Christmas
+- **Gold** (#c9a227): Major feasts (default accent)
+- **Purple** (#9d7eb5): Advent, Lent
+- **Red** (#c45c5c): Pentecost, martyrs
+- **Green** (#5c8c5c): Ordinary time
+- **White** (#d8cfc4): Easter, Christmas
 
-Switch themes with: `~/.local/bin/liturgical-theme.sh [gold|purple|red|green|white]`
+### Switching Themes
+
+```bash
+~/.local/bin/liturgical-theme.sh [gold|purple|red|green|white]
+```
+
+## Terminal Prompt
+
+The Zsh prompt features a cross symbol (✠) and displays:
+- Username@hostname
+- Current directory
+- Git branch (if in a repo)
+- Liturgical color indicator
+
+Add to `~/.zshrc`:
+```bash
+source ~/.config/zsh/cross-prompt.zsh
+```
+
+## Wallpaper
+
+Place your dark religious artwork at:
+```
+~/.config/wallpapers/sanctum-dark.jpg
+```
+
+Recommended sources:
+- Wikimedia Commons (public domain religious art)
+- Artvee (classical art)
+- Caravaggio, Rembrandt, Zurbarán (Tenebrism style)
+
+## File Structure
+
+```
+~/.config/
+├── niri/config.kdl          # Window manager config
+├── waybar/
+│   ├── config               # Bar configuration
+│   └── style.css            # Dark theme with gold accents
+├── kitty/
+│   ├── kitty.conf           # Terminal with transparency
+│   └── session.conf         # Auto-start session
+├── wofi/style.css           # Launcher styling
+├── mako/config              # Notifications
+├── swaylock/config          # Lock screen
+├── wlogout/
+│   ├── layout               # Power menu layout
+│   └── style.css            # Power menu styling
+└── zsh/
+    ├── cross-prompt.zsh     # Christian-themed prompt
+    └── aliases              # Shell aliases
+
+~/.local/bin/
+├── liturgical-theme.sh      # Theme switcher
+└── fetch-wallpapers.sh      # Wallpaper helper
+```
+
+## Customization
+
+### Change Accent Color
+
+Edit `~/.config/waybar/style.css`:
+```css
+/* Change gold to your preferred color */
+border-color: #c9a227;  /* Gold */
+```
+
+### Adjust Transparency
+
+Edit `~/.config/kitty/kitty.conf`:
+```
+background_opacity 0.92  # Adjust 0.0-1.0
+```
+
+### Change Cross Symbol
+
+Edit `~/.config/zsh/cross-prompt.zsh` and change:
+```zsh
+local CROSS="✠"  # Try: † ✝ ✞ ✟ ⛪
+```
+
+## Gallery
+
+*Add your screenshots here*
+
+## Credits
+
+- Niri: https://github.com/YaLTeR/niri
+- Inspired by Christian art and liturgical tradition
+
+## License
+
+MIT License - Feel free to modify and share.
+
+---
+
+*"The earth is the Lord's, and everything in it." - Psalm 24:1*
