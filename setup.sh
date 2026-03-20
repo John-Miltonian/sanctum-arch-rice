@@ -200,19 +200,9 @@ update_shell() {
 # Set up fonts
 setup_fonts() {
     echo ""
-    echo "Font Setup"
-    echo "----------"
-    echo "Recommended fonts for Sanctum OS:"
-    echo "  • Fira Code (monospace) - pacman -S ttf-fira-code"
-    echo "  • Font Awesome (icons) - pacman -S ttf-font-awesome"
-    echo "  • Noto Fonts (CJK support) - pacman -S noto-fonts"
-    echo ""
-    read -p "Install recommended fonts? [y/N] " -n 1 -r
-    echo
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-        sudo pacman -S --needed ttf-fira-code ttf-font-awesome noto-fonts 2>/dev/null || true
-        echo "✓ Fonts installed"
-    fi
+    echo "Installing fonts..."
+    sudo pacman -S --needed --noconfirm ttf-fira-code ttf-font-awesome noto-fonts 2>/dev/null || echo "Some fonts may need manual installation"
+    echo "✓ Fonts installed (or already present)"
 }
 
 # Wallpaper setup
@@ -220,23 +210,29 @@ setup_wallpaper() {
     echo ""
     echo "Wallpaper Setup"
     echo "---------------"
-    echo "Sanctum OS uses dark religious artwork (Tenebrism/Caravaggio style)."
-    echo ""
-    echo "Recommended sources:"
-    echo "  • Wikimedia Commons - Caravaggio paintings"
-    echo "  • Art Institute of Chicago (public domain)"
-    echo "  • Metropolitan Museum of Art (open access)"
-    echo ""
-    echo "Save your wallpaper as: ~/.config/wallpapers/sanctum-dark.jpg"
-    echo ""
     
     mkdir -p "$CONFIG_DIR/wallpapers"
     
-    if [[ ! -f "$CONFIG_DIR/wallpapers/sanctum-dark.jpg" ]]; then
-        echo "Note: No wallpaper found. Please add one before starting Niri."
-    else
-        echo "✓ Wallpaper found"
+    # Copy all wallpapers from repo to config
+    if [[ -d "$SCRIPT_DIR/wallpapers" ]]; then
+        echo "Copying wallpapers..."
+        cp -f "$SCRIPT_DIR/wallpapers/"*.jpg "$CONFIG_DIR/wallpapers/" 2>/dev/null || true
     fi
+    
+    # Set default wallpaper if not present
+    if [[ ! -f "$CONFIG_DIR/wallpapers/sanctum-dark.jpg" ]]; then
+        # Use the first available wallpaper as default
+        if [[ -f "$CONFIG_DIR/wallpapers/sanctum-01.jpg" ]]; then
+            ln -sf "$CONFIG_DIR/wallpapers/sanctum-01.jpg" "$CONFIG_DIR/wallpapers/sanctum-dark.jpg"
+            echo "✓ Default wallpaper set (sanctum-01.jpg)"
+        fi
+    else
+        echo "✓ Default wallpaper already set"
+    fi
+    
+    # Count available wallpapers
+    local count=$(ls -1 "$CONFIG_DIR/wallpapers/"*.jpg 2>/dev/null | wc -l)
+    echo "✓ $count wallpapers available in ~/.config/wallpapers/"
 }
 
 # Final instructions
