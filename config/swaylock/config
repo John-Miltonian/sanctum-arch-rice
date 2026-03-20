@@ -1,0 +1,60 @@
+# Sanctum OS - Swaylock Configuration
+# Dark themed lock screen with Christian elements
+
+# General
+daemonize
+show-failed-attempts
+ignore-empty-password
+
+# Appearance
+color=15151a
+font=Fira Code
+font-size=24
+
+# Ring styling (halo effect)
+ring-color=3a3a45
+ring-ver-color=c9a227
+ring-wrong-color=c45c5c
+ring-clear-color=7aad7a
+
+# Inside colors
+inside-color=15151a95
+inside-ver-color=15151a95
+inside-wrong-color=15151a95
+inside-clear-color=15151a95
+
+# Text
+line-color=00000000
+line-clear-color=00000000
+line-ver-color=00000000
+line-wrong-color=00000000
+separator-color=00000000
+
+# Text colors
+text-color=d8cfc4
+text-clear-color=c9a227
+text-ver-color=c9a227
+text-wrong-color=c45c5c
+text-caps-lock-color=c9a227
+
+# Layout
+effect-blur=7x5
+clock
+indicator
+indicator-radius=120
+indicator-thickness=12
+
+# Positioning
+clock-x=50%%
+clock-y=75%%
+
+# Date/Time format
+timestr=%H:%M
+datestr=%A, %B %d
+
+# Image (set by theme switcher or use default)
+# image=~/.config/wallpapers/sanctum-dark.jpg
+
+# Grace period (seconds before requiring password)
+grace=2
+fade-in=0.2

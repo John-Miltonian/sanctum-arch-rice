@@ -1,0 +1,82 @@
+/* Sanctum OS - Wlogout Dark Theme */
+
+* {
+    font-family: "Fira Code", sans-serif;
+    font-size: 16px;
+}
+
+window {
+    background-color: rgba(20, 20, 25, 0.90);
+    border: 2px solid #c9a227;
+    border-radius: 16px;
+}
+
+button {
+    background-color: rgba(30, 30, 35, 0.8);
+    color: #d8cfc4;
+    border: 1px solid #3a3a45;
+    border-radius: 12px;
+    margin: 12px;
+    padding: 20px 40px;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: rgba(201, 162, 39, 0.2);
+    border-color: #c9a227;
+    color: #c9a227;
+    transform: scale(1.05);
+}
+
+button:focus {
+    background-color: rgba(201, 162, 39, 0.3);
+    border-color: #c9a227;
+    color: #c9a227;
+}
+
+button:active {
+    background-color: rgba(201, 162, 39, 0.4);
+}
+
+/* Specific button colors */
+button:nth-child(1) {
+    /* Lock - Gold */
+    color: #c9a227;
+}
+
+button:nth-child(2) {
+    /* Logout - Red */
+    color: #c45c5c;
+}
+
+button:nth-child(2):hover {
+    border-color: #c45c5c;
+}
+
+button:nth-child(3) {
+    /* Sleep - Blue */
+    color: #7aadbd;
+}
+
+button:nth-child(3):hover {
+    border-color: #7aadbd;
+}
+
+button:nth-child(4) {
+    /* Power Off - Dark Red */
+    color: #ff6b6b;
+}
+
+button:nth-child(4):hover {
+    background-color: rgba(180, 50, 50, 0.3);
+    border-color: #ff6b6b;
+}
+
+button:nth-child(5) {
+    /* Reboot - Green */
+    color: #7aad7a;
+}
+
+button:nth-child(5):hover {
+    border-color: #7aad7a;
+}

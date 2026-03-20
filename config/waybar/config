@@ -1,0 +1,126 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 32,
+    "spacing": 4,
+    "modules-left": ["niri/workspaces", "niri/window"],
+    "modules-center": ["custom/verse", "clock#liturgical"],
+    "modules-right": ["cpu", "memory", "pulseaudio", "custom/battery", "tray", "custom/notification", "custom/power"],
+    
+    // Workspace styling with liturgical names
+    "niri/workspaces": {
+        "format": "{name}",
+        "on-click": "activate",
+        "on-scroll-up": "niri msg action focus-workspace-up",
+        "on-scroll-down": "niri msg action focus-workspace-down",
+        "format-icons": {
+            "Sanctum": "✠",       // Cross - main workspace
+            "Scripture": "✞",     // Cross outline - study
+            "Communion": "☧",     // Chi Rho - communication
+            "Labor": "⚒",         // Hammer - work
+            "Reflection": "✡",    // Star - media
+            "Rest": "☽",          // Moon - rest
+            "Prayer": "🙏",       // Prayer hands
+            "Study": "📖",        // Book - learning
+            "Service": "⚙",       // Gear - system
+            "Glory": "☀"          // Sun - special
+        }
+    },
+    
+    "niri/window": {
+        "format": "{title}",
+        "max-length": 50,
+        "tooltip": false
+    },
+    
+    // Daily verse display
+    "custom/verse": {
+        "format": "✠ {}",
+        "interval": 300,
+        "exec": "daily-verse --plain 2>/dev/null || echo 'For God so loved the world...'",
+        "tooltip": true,
+        "tooltip-format": "Daily Scripture - Click to copy"
+    },
+    
+    // Liturgical clock with feast day awareness
+    "clock#liturgical": {
+        "format": "{:%H:%M | %a %b %d}",
+        "format-alt": "{:%Y-%m-%d %H:%M:%S}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>",
+        "calendar": {
+            "mode": "year",
+            "mode-mon-col": 3,
+            "weeks-pos": "right",
+            "on-scroll": 1,
+            "on-click-right": "mode"
+        },
+        "actions": {
+            "on-click-right": "mode",
+            "on-click-forward": "tz_up",
+            "on-click-backward": "tz_down",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
+    },
+    
+    "cpu": {
+        "format": "⚙ {usage}%",
+        "tooltip": true,
+        "interval": 2,
+        "on-click": "kitty -e htop"
+    },
+    
+    "memory": {
+        "format": "✟ {}%",
+        "tooltip-format": "{used:0.1f}G / {total:0.1f}G ({percentage}%)",
+        "interval": 2,
+        "on-click": "kitty -e htop"
+    },
+    
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "🔇",
+        "format-icons": {
+            "default": ["🔈", "🔉", "🔊"]
+        },
+        "on-click": "pavucontrol",
+        "on-scroll-up": "pamixer -i 5",
+        "on-scroll-down": "pamixer -d 5"
+    },
+    
+    "custom/battery": {
+        "format": "{icon} {percentage}%",
+        "exec": "cat /sys/class/power_supply/BAT*/capacity 2>/dev/null | head -1 | xargs -I {} echo {}%",
+        "return-type": "json",
+        "format-icons": ["🪫", "🔋", "⚡"],
+        "interval": 30
+    },
+    
+    "tray": {
+        "spacing": 8,
+        "icon-size": 16
+    },
+    
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "🔔<span foreground='red'><sup>⬤</sup></span>",
+            "none": "🔔",
+            "dnd-notification": "🔕<span foreground='red'><sup>⬤</sup></span>",
+            "dnd-none": "🔕"
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+    },
+    
+    "custom/power": {
+        "format": "⏻",
+        "on-click": "wlogout -b 4",
+        "tooltip": false
+    }
+}

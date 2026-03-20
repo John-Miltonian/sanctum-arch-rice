@@ -1,0 +1,42 @@
+# Sanctum OS - Additions to .zshrc
+# Add these lines to your ~/.zshrc
+
+# Cross prompt
+source ~/.config/zsh/cross-prompt.zsh
+
+# Christian aliases
+source ~/.config/zsh/aliases
+
+# Add local bin to PATH
+export PATH="$HOME/.local/bin:$PATH"
+
+# Daily verse on terminal start (optional - uncomment to enable)
+# function verse_greeting() {
+#     if [[ -z $VERSE_SHOWN ]] && command -v daily-verse &>/dev/null; then
+#         echo ""
+#         daily-verse --plain 2>/dev/null | head -1 | xargs -I {} echo "    %F{220}✠ {}%f"
+#         echo ""
+#         export VERSE_SHOWN=1
+#     fi
+# }
+# precmd_functions+=(verse_greeting)
+
+# ASCII Art welcome (optional - uncomment to enable)
+# function welcome_cross() {
+#     if [[ -z $WELCOME_SHOWN ]]; then
+#         cat << 'EOF'
+# 
+#          ███████╗ █████╗ ███╗   ██╗ ██████╗████████╗██╗   ██╗███╗   ███╗
+#          ██╔════╝██╔══██╗████╗  ██║██╔════╝╚══██╔══╝██║   ██║████╗ ████║
+#          ███████╗███████║██╔██╗ ██║██║        ██║   ██║   ██║██╔████╔██║
+#          ╚════██║██╔══██║██║╚██╗██║██║        ██║   ██║   ██║██║╚██╔╝██║
+#          ███████║██║  ██║██║ ╚████║╚██████╗   ██║   ╚██████╔╝██║ ╚═╝ ██║
+#          ╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝
+# 
+# EOF
+#         echo "    %F{220}✠ In nomine Patris, et Filii, et Spiritus Sancti ✠%f"
+#         echo ""
+#         export WELCOME_SHOWN=1
+#     fi
+# }
+# precmd_functions+=(welcome_cross)

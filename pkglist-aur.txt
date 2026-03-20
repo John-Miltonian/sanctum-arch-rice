@@ -1,0 +1,20 @@
+# Sanctum OS - AUR Package List
+# Install with: yay -S --needed - < pkglist-aur.txt
+
+# === LOCK SCREEN WITH EFFECTS ===
+swaylock-effects
+
+# === LOGOUT MENU ===
+wlogout
+
+# === BIBLE STUDY ===
+xiphos
+
+# === OPTIONAL: NOTIFICATION DAEMON ===
+swaync
+
+# === OPTIONAL: GREETER ===
+sddm
+
+# === BROWSER (for web Bible) ===
+firefox

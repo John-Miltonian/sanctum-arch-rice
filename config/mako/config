@@ -1,0 +1,49 @@
+# Sanctum OS - Mako Notification Daemon Config
+# Dark theme with gold accents
+
+# Appearance
+default-timeout=5000
+background-color=#15151a
+border-color=#c9a227
+border-size=2
+width=350
+height=150
+margin=10
+padding=15
+border-radius=12
+icons=1
+max-icon-size=48
+font=Fira Code 11
+
+# Text colors
+text-color=#d8cfc4
+
+# Progress bar
+progress-color=#c9a227
+
+# Urgency levels
+[urgency=low]
+border-color=#3a3a45
+default-timeout=3000
+
+[urgency=normal]
+border-color=#c9a227
+
+[urgency=critical]
+border-color=#c45c5c
+text-color=#ff8080
+default-timeout=0
+
+# Categories
+[category=christian-hours]
+border-color=#9d7eb5
+text-color=#d0b8e8
+
+[category=verse]
+border-color=#c9a227
+text-color=#e6c45c
+icon=/usr/share/icons/hicolor/scalable/apps/bibletime.svg
+
+# History
+history=1
+max-history=50

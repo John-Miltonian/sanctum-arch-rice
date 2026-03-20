@@ -1,0 +1,57 @@
+# Sanctum OS - Package List
+# Install with: sudo pacman -S --needed - < pkglist.txt
+# Then: yay -S --needed - < pkglist-aur.txt
+
+# === CORE WINDOW MANAGER ===
+niri
+
+# === BAR ===
+waybar
+
+# === TERMINAL ===
+kitty
+
+# === LAUNCHER ===
+wofi
+
+# === WALLPAPER ===
+swaybg
+
+# === LOCK SCREEN ===
+# Install via AUR: swaylock-effects
+
+# === LOGOUT MENU ===
+# Install via AUR: wlogout
+
+# === NOTIFICATIONS ===
+mako
+
+# === CLIPBOARD ===
+cliphist
+
+# === UTILITIES ===
+wl-clipboard
+grim
+slurp
+swayidle
+
+# === FONTS ===
+ttf-fira-code
+ttf-font-awesome
+noto-fonts
+
+# === GUI BIBLE APPS ===
+bibletime
+
+# === BUILD DEPENDENCIES ===
+base-devel
+git
+awk
+curl
+jq
+make
+gcc
+npm
+go
+python
+python-pip

@@ -1,0 +1,216 @@
+/* Sanctum OS - Waybar Dark Theme */
+/* Dark mode with gold liturgical accents */
+
+* {
+    font-family: "Fira Code", "Font Awesome 6 Free", sans-serif;
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: rgba(20, 20, 25, 0.85);
+    border-bottom: 2px solid rgba(201, 162, 39, 0.5);
+    color: #e0d5b7;
+    transition: all 0.3s ease;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+/* Workspaces - Liturgical themed */
+#workspaces {
+    background: rgba(30, 30, 35, 0.7);
+    border-radius: 4px;
+    padding: 0 8px;
+    margin: 4px;
+}
+
+#workspaces button {
+    color: #7a7066;
+    padding: 0 10px;
+    margin: 2px;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+#workspaces button:hover {
+    background: rgba(201, 162, 39, 0.2);
+    color: #c9a227;
+}
+
+#workspaces button.active {
+    background: rgba(201, 162, 39, 0.3);
+    color: #c9a227;
+    border-bottom: 2px solid #c9a227;
+}
+
+#workspaces button.urgent {
+    background: rgba(180, 50, 50, 0.5);
+    color: #ff6b6b;
+}
+
+/* Window title */
+#window {
+    color: #a89984;
+    padding: 0 12px;
+    font-style: italic;
+}
+
+/* Daily Verse - The centerpiece */
+#custom-verse {
+    background: linear-gradient(135deg, rgba(201, 162, 39, 0.15), rgba(139, 90, 43, 0.15));
+    color: #e0c080;
+    padding: 0 16px;
+    margin: 3px 8px;
+    border-radius: 20px;
+    font-style: italic;
+    border: 1px solid rgba(201, 162, 39, 0.3);
+    min-width: 200px;
+    text-align: center;
+}
+
+#custom-verse:hover {
+    background: linear-gradient(135deg, rgba(201, 162, 39, 0.25), rgba(139, 90, 43, 0.25));
+}
+
+/* Clock */
+#clock.liturgical {
+    background: rgba(40, 40, 45, 0.8);
+    color: #c9a227;
+    padding: 0 14px;
+    margin: 4px;
+    border-radius: 4px;
+    border: 1px solid rgba(201, 162, 39, 0.2);
+}
+
+/* System modules */
+#cpu {
+    background: rgba(50, 45, 60, 0.7);
+    color: #9d8fbc;
+    padding: 0 10px;
+    margin: 4px 2px;
+    border-radius: 4px;
+}
+
+#memory {
+    background: rgba(60, 45, 45, 0.7);
+    color: #bc8f8f;
+    padding: 0 10px;
+    margin: 4px 2px;
+    border-radius: 4px;
+}
+
+#pulseaudio {
+    background: rgba(45, 50, 60, 0.7);
+    color: #8fa8bc;
+    padding: 0 10px;
+    margin: 4px 2px;
+    border-radius: 4px;
+}
+
+#pulseaudio.muted {
+    color: #666;
+}
+
+#custom-battery {
+    background: rgba(45, 60, 45, 0.7);
+    color: #8fbc8f;
+    padding: 0 10px;
+    margin: 4px 2px;
+    border-radius: 4px;
+}
+
+#custom-battery.low {
+    color: #ff6b6b;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Tray */
+#tray {
+    background: rgba(30, 30, 35, 0.7);
+    padding: 0 8px;
+    margin: 4px;
+    border-radius: 4px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+}
+
+/* Notification bell */
+#custom-notification {
+    background: rgba(50, 50, 55, 0.7);
+    padding: 0 10px;
+    margin: 4px 2px;
+    border-radius: 4px;
+}
+
+/* Power button */
+#custom-power {
+    background: rgba(80, 40, 40, 0.7);
+    color: #ff8080;
+    padding: 0 14px;
+    margin: 4px 8px 4px 2px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+#custom-power:hover {
+    background: rgba(120, 50, 50, 0.8);
+}
+
+/* Tooltip styling */
+tooltip {
+    background: rgba(20, 20, 25, 0.95);
+    border: 1px solid #c9a227;
+    border-radius: 6px;
+    color: #e0d5b7;
+}
+
+tooltip label {
+    color: #e0d5b7;
+}
+
+/* Specific liturgical colors based on season - can be changed via script */
+.liturgical-ordinary #clock.liturgical,
+.liturgical-green #clock.liturgical {
+    color: #6b8e6b;
+    border-color: rgba(107, 142, 107, 0.3);
+}
+
+.liturgical-advent #clock.liturgical,
+.liturgical-lent #clock.liturgical,
+.liturgical-purple #clock.liturgical {
+    color: #9d7eb5;
+    border-color: rgba(157, 126, 181, 0.3);
+}
+
+.liturgical-christmas #clock.liturgical,
+.liturgical-easter #clock.liturgical,
+.liturgical-white #clock.liturgical {
+    color: #e8e8e8;
+    border-color: rgba(232, 232, 232, 0.3);
+}
+
+.liturgical-pentecost #clock.liturgical,
+.liturgical-martyr #clock.liturgical,
+.liturgical-red #clock.liturgical {
+    color: #d45757;
+    border-color: rgba(212, 87, 87, 0.3);
+}
+
+.liturgical-gold #clock.liturgical,
+.liturgical-feast #clock.liturgical {
+    color: #c9a227;
+    border-color: rgba(201, 162, 39, 0.3);
+}

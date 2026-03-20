@@ -1,0 +1,38 @@
+# Sanctum OS - Christian Zsh Aliases
+# Quick access to Christian tools
+
+# Bible reading
+alias k='kjv'
+alias kjv-full='kjv'
+alias bible='bible-cli'
+alias bib='bib'
+alias verse='daily-verse'
+alias v='daily-verse'
+alias vr='random-verse'
+
+# Prayer hours
+alias hours='christian-hours'
+alias matins='echo "🌅 Matins/Lauds - Morning Prayer"'
+alias vespers='echo "🌇 Vespers - Evening Prayer"'
+alias compline='echo "🌙 Compline - Night Prayer"'
+
+# Liturgical theming
+alias theme='liturgical-theme.sh'
+alias advent='liturgical-theme.sh advent'
+alias christmas='liturgical-theme.sh christmas'
+alias lent='liturgical-theme.sh lent'
+alias easter='liturgical-theme.sh easter'
+alias pentecost='liturgical-theme.sh pentecost'
+alias ordinary='liturgical-theme.sh ordinary'
+
+# System
+alias niri-logout='niri msg action quit'
+alias niri-lock='swaylock -f -i ~/.config/wallpapers/sanctum-dark.jpg --clock --effect-blur 7x5'
+alias wallpaper='swaybg -i ~/.config/wallpapers/sanctum-dark.jpg -m fill'
+
+# Scripture search
+alias search-bible='grepbible'
+alias find-verse='grepbible'
+
+# Cross
+alias cross='echo "✠"'
