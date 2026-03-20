@@ -115,9 +115,12 @@ fi
 # 6. grepbible - Multi-language search
 echo "Installing grepbible..."
 if ! command -v grepbible &>/dev/null; then
-    pip install --user grepbible
-    # Add to PATH if not already there
-    grep -q "grepbible" ~/.bashrc 2>/dev/null || echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+    # Install pipx if not present
+    if ! command -v pipx &>/dev/null; then
+        sudo pacman -S --noconfirm python-pipx
+        pipx ensurepath
+    fi
+    pipx install grepbible
     echo "✓ grepbible installed"
 else
     echo "✓ grepbible already installed"
