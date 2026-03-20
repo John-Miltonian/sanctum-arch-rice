@@ -141,6 +141,12 @@ install_configs() {
         chmod +x "$LOCAL_BIN/liturgical-theme.sh"
     fi
     
+    # Copy wallpapers
+    if [[ -d "$SCRIPT_DIR/wallpapers" ]]; then
+        echo "  Installing wallpapers..."
+        cp "$SCRIPT_DIR/wallpapers/"*.jpg "$CONFIG_DIR/wallpapers/" 2>/dev/null || true
+    fi
+    
     # Copy aliases
     if [[ -f "$SCRIPT_DIR/config/zsh/aliases" ]]; then
         echo "  Installing Zsh aliases..."

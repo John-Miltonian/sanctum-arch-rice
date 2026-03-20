@@ -15,16 +15,16 @@ input {
 
 output "*" {
     // Dark wallpaper - Caravaggio/Tenebrism style
-    background-path "/home/josh/.config/wallpapers/sanctum-dark.jpg"
+    background-path "~/.config/wallpapers/sanctum-01.jpg"
 }
 
 // Dark color scheme with gold accents
-spawn-at-startup "swaybg" "-m" "fill" "-i" "/home/josh/.config/wallpapers/sanctum-dark.jpg"
+spawn-at-startup "swaybg" "-m" "fill" "-i" "~/.config/wallpapers/sanctum-01.jpg"
 spawn-at-startup "waybar"
-spawn-at-startup "kitty" "--session" "/home/josh/.config/kitty/session.conf"
+spawn-at-startup "kitty" "--session" "~/.config/kitty/session.conf"
 
 // Idle management
-spawn-at-startup "swayidle" "-w" "timeout" "600" "swaylock" "-f" "-i" "/home/josh/.config/wallpapers/sanctum-dark.jpg"
+spawn-at-startup "swayidle" "-w" "timeout" "600" "swaylock" "-f" "-i" "~/.config/wallpapers/sanctum-01.jpg"
 
 // Clipboard
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
@@ -92,11 +92,11 @@ binds {
     Super+Space spawn "wofi --show drun --style ~/.config/wofi/style.css"
     Super+Shift+Space spawn "wofi --show run --style ~/.config/wofi/style.css"
     
-    // Christian tools quick launch
-    Super+B spawn "kitty -e bible-cli"
-    Super+Shift+B spawn "bibletime"
-    Super+V spawn "kitty -e daily-verse"
-    Super+K spawn "kitty -e kjv"
+    // Christian tools quick launch (if installed)
+    // Super+B spawn "kitty -e bible-cli"
+    // Super+Shift+B spawn "bibletime"
+    // Super+V spawn "kitty -e daily-verse"
+    // Super+K spawn "kitty -e kjv"
     
     // Window management
     Super+Left focus-column-left
@@ -165,7 +165,7 @@ binds {
     Super+Shift+Print spawn "grim -g \"$(slurp)\" ~/Pictures/Screenshots/$(date +%Y%m%d_%H%M%S).png"
     
     // Lock
-    Super+L spawn "swaylock -f -i /home/josh/.config/wallpapers/sanctum-dark.jpg --clock --effect-blur 7x5"
+    Super+L spawn "swaylock -f -i ~/.config/wallpapers/sanctum-01.jpg --clock --effect-blur 7x5"
     
     // Exit
     Super+Shift+E quit
