@@ -1,6 +1,6 @@
 #!/bin/bash
 # Sanctum OS Setup Script
-# Installs Niri rice with dark mode and Christian tools
+# Installs Niri rice with dark mode and Christian theming
 
 set -e
 
@@ -134,20 +134,20 @@ install_configs() {
     echo "  Installing Zsh cross prompt..."
     cp "$SCRIPT_DIR/config/zsh/cross-prompt.zsh" "$CONFIG_DIR/zsh/"
     
-    # Copy scripts
-    echo "  Installing helper scripts..."
-    cp "$SCRIPT_DIR/local/bin/liturgical-theme.sh" "$LOCAL_BIN/"
-    cp "$SCRIPT_DIR/local/bin/fetch-wallpapers.sh" "$LOCAL_BIN/"
-    chmod +x "$LOCAL_BIN/"*.sh
+    # Copy liturgical theme script
+    if [[ -f "$SCRIPT_DIR/local/bin/liturgical-theme.sh" ]]; then
+        echo "  Installing liturgical theme script..."
+        cp "$SCRIPT_DIR/local/bin/liturgical-theme.sh" "$LOCAL_BIN/"
+        chmod +x "$LOCAL_BIN/liturgical-theme.sh"
+    fi
+    
+    # Copy aliases
+    if [[ -f "$SCRIPT_DIR/config/zsh/aliases" ]]; then
+        echo "  Installing Zsh aliases..."
+        cp "$SCRIPT_DIR/config/zsh/aliases" "$CONFIG_DIR/zsh/"
+    fi
     
     echo "✓ Configurations installed"
-}
-
-# Install Christian tools
-install_christian_tools() {
-    echo ""
-    echo "Installing Christian tools..."
-    bash "$SCRIPT_DIR/install-christian-tools.sh"
 }
 
 # Update shell profile
@@ -180,6 +180,15 @@ update_shell() {
         echo "export PATH=\"$LOCAL_BIN:\$PATH\"" >> "$shell_rc"
         echo "✓ Added ~/.local/bin to PATH"
     fi
+    
+    # Add aliases source if present
+    if [[ -f "$CONFIG_DIR/zsh/aliases" ]]; then
+        local aliases_line="source $CONFIG_DIR/zsh/aliases"
+        if ! grep -q "$aliases_line" "$shell_rc" 2>/dev/null; then
+            echo "$aliases_line" >> "$shell_rc"
+            echo "✓ Added aliases to $shell_rc"
+        fi
+    fi
 }
 
 # Set up fonts
@@ -205,20 +214,31 @@ setup_wallpaper() {
     echo ""
     echo "Wallpaper Setup"
     echo "---------------"
-    
-    "$LOCAL_BIN/fetch-wallpapers.sh"
-    
+    echo "Sanctum OS uses dark religious artwork (Tenebrism/Caravaggio style)."
     echo ""
-    echo "Note: You'll need to provide your own wallpaper."
-    echo "Save as: ~/.config/wallpapers/sanctum-dark.jpg"
+    echo "Recommended sources:"
+    echo "  • Wikimedia Commons - Caravaggio paintings"
+    echo "  • Art Institute of Chicago (public domain)"
+    echo "  • Metropolitan Museum of Art (open access)"
+    echo ""
+    echo "Save your wallpaper as: ~/.config/wallpapers/sanctum-dark.jpg"
+    echo ""
+    
+    mkdir -p "$CONFIG_DIR/wallpapers"
+    
+    if [[ ! -f "$CONFIG_DIR/wallpapers/sanctum-dark.jpg" ]]; then
+        echo "Note: No wallpaper found. Please add one before starting Niri."
+    else
+        echo "✓ Wallpaper found"
+    fi
 }
 
 # Final instructions
 show_instructions() {
     echo ""
     echo "╔════════════════════════════════════════════════════════════╗"
-echo "║                 ✠ SETUP COMPLETE ✠                         ║"
-echo "╚════════════════════════════════════════════════════════════╝"
+    echo "║                 ✠ SETUP COMPLETE ✠                         ║"
+    echo "╚════════════════════════════════════════════════════════════╝"
     echo ""
     echo "Next Steps:"
     echo "-----------"
@@ -233,26 +253,19 @@ echo "╚═══════════════════════�
     echo "3. Keybindings:"
     echo "   Super+Enter    - Open terminal"
     echo "   Super+Space    - Open launcher"
-    echo "   Super+B        - Open Bible CLI"
-    echo "   Super+Shift+B  - Open BibleTime"
-    echo "   Super+V        - Daily verse"
     echo "   Super+1-0      - Switch workspaces"
     echo "   Super+L        - Lock screen"
+    echo "   Super+Shift+E  - Exit Niri"
     echo ""
     echo "4. Change liturgical theme:"
-    echo "   liturgical-theme.sh [advent|christmas|lent|easter|pentecost|ordinary]"
+    echo "   liturgical-theme.sh [gold|purple|red|green|white]"
     echo ""
-    echo "5. Installed Christian tools:"
-    echo "   • kjv [reference]      - Read KJV Bible"
-    echo "   • bible-cli            - TUI Bible reader"
-    echo "   • daily-verse          - Daily verse in terminal"
-    echo "   • grepbible [ref]      - Multi-language search"
-    echo "   • random-verse         - Random verse widget"
-    echo "   • christian-hours      - Prayer hours reminder"
-    echo ""
-    echo "6. For SDDM/Display Manager autostart:"
-    echo "   Create: /usr/share/wayland-sessions/niri.desktop"
-    echo "   Exec=niri"
+    echo "5. Workspaces (liturgical names):"
+    echo "   1: Sanctum    6: Prayer"
+    echo "   2: Scripture  7: Contemplation"
+    echo "   3: Study      8: Devotion"
+    echo "   4: Homily     9: Meditation"
+    echo "   5: Liturgy    0: Silence"
     echo ""
     echo "✠ Pax et bonum ✠"
     echo ""
@@ -263,13 +276,6 @@ main() {
     check_dependencies
     backup_configs
     install_configs
-    
-    read -p "Install Christian Bible tools? [Y/n] " -n 1 -r
-    echo
-    if [[ ! $REPLY =~ ^[Nn]$ ]]; then
-        install_christian_tools
-    fi
-    
     update_shell
     setup_fonts
     setup_wallpaper
