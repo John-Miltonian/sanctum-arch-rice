@@ -66,15 +66,20 @@ else
     echo "✓ kjv already installed"
 fi
 
-# 2. layeh/kjv - Alternative C version
+# 2. layeh/kjv - Alternative C version (optional, may fail on C23)
 echo "Installing layeh/kjv (C version)..."
-if ! command -v kjv &>/dev/null; then
+if ! command -v kjv-layeh &>/dev/null; then
     cd /tmp
-    git clone https://github.com/layeh/kjv.git layeh-kjv
-    cd layeh-kjv
-    make
-    sudo cp kjv /usr/local/bin/kjv-layeh
-    echo "✓ layeh/kjv installed as kjv-layeh"
+    git clone https://github.com/layeh/kjv.git layeh-kjv 2>/dev/null || true
+    cd layeh-kjv 2>/dev/null && {
+        # Try to build, but don't fail if C23 bool conflict occurs
+        if make 2>/dev/null; then
+            sudo cp kjv /usr/local/bin/kjv-layeh
+            echo "✓ layeh/kjv installed as kjv-layeh"
+        else
+            echo "⚠ layeh/kjv skipped (C23 bool conflict - using LukeSmith kjv instead)"
+        fi
+    } || echo "⚠ layeh/kjv skipped"
 fi
 
 # 3. bib - NET Bible reader
